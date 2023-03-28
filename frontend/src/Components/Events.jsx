@@ -6,21 +6,78 @@ import { Card, Button, Container, Row, Col } from "react-bootstrap";
 // import css file
 import "./components.css";
 
+import image from '../Images/event1.jpg';
 
-const EventCard = (props) => {
+const data = [
+  {
+    title: "Event 1",
+    subtitle: "Subtitle 1",
+    description: generateRandomDescription(),
+  },
+  {
+    title: "Event 2",
+    subtitle: "Subtitle 2",
+    description: generateRandomDescription(),
+  },
+  {
+    title: "Event 3",
+    subtitle: "Subtitle 3",
+    description: generateRandomDescription(),
+  },
+  {
+    title: "Event 4",
+    subtitle: "Subtitle 4",
+    description: generateRandomDescription(),
+  },
+  {
+    title: "Event 5",
+    subtitle: "Subtitle 5",
+    description: generateRandomDescription(),
+  },
+  {
+    title: "Event 6",
+    subtitle: "Subtitle 6",
+    description: generateRandomDescription(),
+  },
+  {
+    title: "Event 7",
+    subtitle: "Subtitle 7",
+    description: generateRandomDescription(),
+  },
+];
+
+function generateRandomDescription() {
+  const descriptions = [
+    "This event is all about learning and networking with other professionals in the field.",
+    "Join us for an exciting day filled with keynote speakers and hands-on workshops.",
+    "Whether you're a seasoned professional or just starting out, this event has something for everyone.",
+    "Don't miss out on this opportunity to connect with like-minded individuals and expand your knowledge.",
+    "Discover new strategies and techniques to take your career to the next level.",
+    "Get ready for a day of fun and inspiration, with top-notch speakers and engaging activities.",
+    "Come and be a part of this dynamic community, where you'll learn, grow, and connect with others.",
+  ];
+  const randomIndex = Math.floor(Math.random() * descriptions.length);
+  return descriptions[randomIndex];
+}
+
+
+const EventCard = (event) => {
     return (
-        <Card style={{ width: '100vw', minWidth:"max-content" ,overflow:"overlay !important"}} className="style-primary-inverted m-2">
-        <Card.Body>
-          <Card.Title>{props.Title}</Card.Title>
-          <Card.Subtitle className="mb-2 text-muted">{props.Subtitle}</Card.Subtitle>
-          <Card.Text>
-            {props.Description}
-          </Card.Text>
-          <Card.Link href="#">
-            <Button variant="primary" className="style-primary-btn">Go somewhere</Button>
-          </Card.Link>
-        </Card.Body>
-      </Card>
+    <div className="card">
+       <div className="card-footer">
+        <small className="text-muted"> deadline : 20 April 2023 </small>
+    </div>
+    <div className="card-horizontal">
+        <div className="img-square-wrapper">
+            <img className="card-img" src={image} alt="Card image cap" />
+        </div>
+        <div className="card-body">
+            <h4 className="card-title">{event.title}</h4>
+            <p className="card-text">{event.description}</p>
+            <button className="btn style-primary-btn">Read more</button>
+        </div>
+    </div>
+</div>
     );
 }
 
@@ -29,27 +86,18 @@ const Events = (props) => {
     return (
       <div className="m-1">
         <hr />
-        <h2 className="text-center style-primary">{props.title}</h2>
+        <h2 className="text-center fw-bolder fs-italic">{props.title}</h2>
         <hr />
-        <div style={{ overflowY:"scroll"}} className="w-100 p-0">
-        <Container className=" d-flex flex-nowrap p-0 m-0 w-100" style={{overflowY:"visible"}}>
-            <EventCard Title="Event 1" Subtitle="Subtitle 1" Description="Description 1"/>
-            <EventCard Title="Event 2" Subtitle="Subtitle 2" Description="Description 2"/>
-            <EventCard Title="Event 3" Subtitle="Subtitle 3" Description="Description 3"/>
-            <EventCard Title="Event 4" Subtitle="Subtitle 4" Description="Description 4"/>
-            <EventCard Title="Event 1" Subtitle="Subtitle 1" Description="Description 1"/>
-            <EventCard Title="Event 2" Subtitle="Subtitle 2" Description="Description 2"/>
-            <EventCard Title="Event 3" Subtitle="Subtitle 3" Description="Description 3"/>
-            <EventCard Title="Event 4" Subtitle="Subtitle 4" Description="Description 4"/>
-            <EventCard Title="Event 4" Subtitle="Subtitle 4" Description="Description 4"/>
-            <EventCard Title="Event 1" Subtitle="Subtitle 1" Description="Description 1"/>
-            <EventCard Title="Event 2" Subtitle="Subtitle 2" Description="Description 2"/>
-
-        </Container>
-        </div>
-        <hr />
+        <Row xs={1} md={2} className="g-4">
+        {data.map((event) => (
+          <Col>
+            <EventCard title={event.title} description={event.description} />
+          </Col>
+        ))}
+    </Row>
       </div>
     );
 }
+
 
 export default Events;

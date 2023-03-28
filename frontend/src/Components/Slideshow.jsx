@@ -1,6 +1,10 @@
 import Carousel from 'react-bootstrap/Carousel';
 import React from 'react';
 import './components.css';
+// import image from '../Images/homepage.png';
+import image from '../Images/homepage.png';
+import image2 from '../Images/homepage2.jpg';
+
 
 const dataset = [
     {
@@ -28,26 +32,27 @@ const dataset = [
 
 
 
-function Slideshow() {
+function Slideshow(props) {
   return (
-    <div className='w-100'>
-    <Carousel >
-        {
-            dataset.map((dataset) => {
-                return (
-                    <Carousel.Item style={{backgroundColor:dataset.colorhex}} >
-                    <img src="https://www.colorhexa.com/c184ad.png" alt="" style={{opacity:"0"}}/>
-                    <Carousel.Caption>
-                        <h3>{dataset.title}</h3>
-                        <p>{dataset.caption}</p>
-                    </Carousel.Caption>
-                    </Carousel.Item>
-                );
-            }
-            )
-        }
+    <div className='w-100 h-100 nav-slideshow'>
+    <Carousel controls={false} indicators={false} interval={10000}>
+        <Carousel.Item >
+            <img className="d-block w-100" src={image} alt=""/>
+            <Carousel.Caption>
+        </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item >
+            <img className="d-block w-100" src={image2} alt=""/>
+            <Carousel.Caption>
+        </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Caption>
+                        {props.element}
+        </Carousel.Caption>
+        
     </Carousel>
     </div>
+    
   );
 }
 

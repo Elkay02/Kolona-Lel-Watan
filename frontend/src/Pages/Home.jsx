@@ -8,10 +8,7 @@ const Home = () => {
     return (
         <>
         <BootstrapNavbar />
-        <Slideshow />
-        <Events title="Volunteering Events" />
-        <Events title="Donation Events" />
-        <Events title="Fundraiser Events" />
+        <Events title="Upcoming Events" />
 
         <Footer />
         </>

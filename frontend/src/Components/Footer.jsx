@@ -5,33 +5,32 @@ const Footer = () => {
 return(
 
   <footer
-          className="text-center text-lg-start   style-primary w-100  bottom-0 mt-2"
+          className="text-center text-lg-start  style-primary w-100  bottom-0 mt-2"
           >
     <section
-             className="d-flex justify-content-between p-4 style-primary border-bottom"
+             className="d-flex justify-content-between p-4 style-primary "
              >
       <div className="me-5 ">
         <span>Get connected with us on social networks:</span>
       </div>
       <div>
-        <a href="" className="  me-4">
+        <a href="" className="  style-primary me-4">
             <BsFacebook></BsFacebook>
         </a>
-        <a href="" className="  me-4">
+        <a href="" className="  style-primary me-4">
             <BsTwitter></BsTwitter>
         </a>
-        <a href="" className="  me-4">
+        <a href="" className="  style-primary me-4">
             <BsInstagram></BsInstagram>
         </a>
-        <a href="" className=" me-4">
+        <a href="" className=" style-primary me-4">
             <BsLinkedin></BsLinkedin>
         </a>
-        <a href="" className="  me-4">
+        <a href="" className="  style-primary me-4">
             <BsGithub></BsGithub>
         </a>
       </div>
     </section>
-    <hr />
     <section className="">
       <div className="container text-center text-md-start mt-5">
         <div className="row mt-3">

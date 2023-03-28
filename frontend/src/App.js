@@ -1,4 +1,5 @@
 import React from 'react';
+import "./index.css"
 // react router dom
 import { createBrowserRouter,RouterProvider,Route } from 'react-router-dom';
 import Home from './Pages/Home';
@@ -22,7 +23,7 @@ const browserRouter = createBrowserRouter([
 
 function App() {
   return (
-    <div>
+    <div id='App'>
       <RouterProvider router={browserRouter}/>
     </div>
   );
