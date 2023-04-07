@@ -101,7 +101,7 @@
 
 .style-primary-btn:hover{
     transform: scale(1.05);
-    color: var(--color-2) !important;
+    color: var(--color-4) !important;
     border-bottom: 1px solid var(--color-2) !important;
 }
 
@@ -134,7 +134,7 @@
     border-radius: 0;
     padding: 0.5em;
     margin: 0.5em;
-    color: var(--color-2);
+    color: var(--color-4);
     transition: none;
     text-align: center;
     font-weight: bolder;
@@ -147,32 +147,94 @@
     color: var(--color-4);
     transition: none;
 }
-
+.searchbar-form::placeholder{
+    color: white;
+    font-weight: bolder;
+    opacity: 0.5;
+}
 .nav-slideshow{
     image-rendering: -webkit-optimize-contrast;
 }
 
 .card{
-    background-color: var(--color-4);
+    background-color: white;
     border: 1px solid var(--color-1);
     height: 300px;
     padding: 1em;
+    height: 257px !important;
     overflow-y: auto;
 }
-
-.card-img{
-    width: 300px !important;
-    height: 180px !important;
+.img-square-wrapper{
+    z-index: 2;
+    width: 326px !important;
+    height: 212px !important;
 }
+.card-img{
+    width: 326px !important;
+    height: 212px !important;
+}
+
 .card-horizontal {
     display: flex;
     flex: 1 1 auto;
   }
 
   .card-footer{
-    background-color: var(--color-4) !important;
+    background-color: var(--color-3) !important;
   }
 
+  .card-footer>*{
+    color: var(--color-5) !important;
+  }
+
+  .card-tag{
+    position: absolute;
+    margin-left: 1em;
+    z-index: 2;
+    margin-top: -0.55em;
+    border-radius: 7px 7px 0em 0em;
+    background-color: var(--color-1);
+    width: 50px !important;
+    min-height: fit-content;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+  }
+
+  .card-tag>*{
+    margin-bottom: 5px;
+  }
+
+  .card-tag-shadow{
+    /* position: absolute; */
+    z-index: 0;
+    position: absolute;
+    margin-left: 0.75em;
+    margin-top: -0.55em;
+    border-radius: 7px;
+    color: var(--color-1);
+    background-color: var(--color-1);
+    filter: brightness(65%);
+    
+  }
+  .card-subtitle{
+    display: flex;
+  }
+  .card-subtitle>*{
+    padding: 0px 10px 0px 10px;
+    border-left: 1px dashed var(--color-1);
+  }
+
+  .card-subtitle>*>*{
+    font-weight: 700;
+    color: var(--color-1);
+    align-self: baseline;
+    padding: 5px;
+  }
+  
+    .card-subtitle>*>.card-icon{
+        transform: scale(3);
+    }
 
 
 /* when the scrren size decrease to a phone */
@@ -195,4 +257,13 @@
         align-items: center;
         
     }
+    .searchbar{
+        display:none
+    }
+    .card-subtitle{
+        display: block;
+      }
+      .card-horizontal {
+        flex-direction: column;
+      }
 }

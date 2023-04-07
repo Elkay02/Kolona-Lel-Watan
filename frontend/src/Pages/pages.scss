@@ -1,150 +1,3 @@
-/*.app {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: rgba(250, 241, 241, 0.979);
-  background-image: url("https://t3.ftcdn.net/jpg/02/89/45/50/360_F_289455099_IlT9L3HOHsKIsFmJDmF0x6i01RmnCeRL.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-
-  .form {
-    width: 300px;
-    padding: 50px;
-    border-radius: 5px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgb(233, 109, 177);
-
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
-      font-family: "Roboto", sans-serif;
-      font-size: 24px;
-      color: rgb(233, 109, 177);
-    }
-
-    label {
-      display: block;
-      margin-bottom: 10px;
-      font-family: "Roboto", sans-serif;
-      font-size: 16px;
-      color: rgb(233, 109, 177);
-    }
-
-    input[type="text"],
-    input[type="password"] {
-      display: block;
-      width: 100%;
-      margin-bottom: 10px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 16px;
-      font-family: inherit;
-    }
-
-    button[type="submit"] {
-      display: block;
-      width: 50%;
-      margin: 20px auto;
-      padding: 10px;
-      border: none;
-      border-radius: 10px;
-      background-color: rgb(233, 109, 177);
-      color: #fff;
-      font-size: 17px;
-      font-family: "Roboto", sans-serif;
-      cursor: pointer;
-
-      &:hover {
-        background-color: #555;
-      }
-    }
-
-    h2 {
-      color: rgb(233, 109, 177);
-    }
-
-    p {
-      text-align: center;
-      font-family: "Roboto", sans-serif;
-      font-size: 14px;
-      color: rgb(233, 109, 177);
-      margin-top: 10px;
-
-      a {
-        color: rgb(233, 109, 177);
-        text-decoration: none;
-
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-    }
-  }
-}
-
-.logo {
-  width: 90px;
-  height: 90px;
-  margin-left: auto;
-  padding-left: 35%;
-}
-*/
-
-
-/*body,
-html {
-  height: 100%;
-}
-
-.app {
-  background-color: rgba(250, 241, 241, 0.979);
-  background-image: url("https://t3.ftcdn.net/jpg/02/89/45/50/360_F_289455099_IlT9L3HOHsKIsFmJDmF0x6i01RmnCeRL.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.logo {
-  width: 90px;
-  height: 90px;
-}
-
-.card {
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgb(233, 109, 177);
-}
-
-.text-primary {
-  color: rgb(233, 109, 177) !important;
-}
-
-.btn-primary {
-  background-color: rgb(233, 109, 177) !important;
-  border-color: rgb(233, 109, 177) !important;
-
-  &:hover {
-    background-color: #555 !important;
-    border-color: #555 !important;
-  }
-}
-
-a {
-  color: rgb(233, 109, 177);
-
-  &:hover {
-    text-decoration: underline;
-  }
-}
-*/
 
 :root{
   --color-1:	#0081A7;	
@@ -155,15 +8,19 @@ a {
 }
 
  .container-register {
-  background-color: var(--color-2);
-  background-image: url("https://t3.ftcdn.net/jpg/02/89/45/50/360_F_289455099_IlT9L3HOHsKIsFmJDmF0x6i01RmnCeRL.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 100vw;
-  height: 100vh;
+  height: inherit;
+  text-align: -webkit-center;
+  vertical-align: middle;
+  
+}
+.form-container{
+  padding: 2em;
+  border: 1px solid var(--color-1);
+  border-radius: 10px;
+  margin-top: 5vh;
+  // center div
 
 }
-
 .logo {
   width: 90px;
   height: 90px;
@@ -173,7 +30,7 @@ a {
 
 .text-primary,
 .form-label {
-  color: var(--color-4) !important;
+  color: var(--color-1) !important;
 }
 
 .btn-primary {
@@ -187,16 +44,16 @@ a {
 }
 
 .reg-form{
-  background-color: var(--color-2);
+  background-color: var(--color-4);
   border-radius: 5px;
-  border: 1px solid var(--color-4);
+  border: 1px solid var(--color-1);
   color: var(--color-1);
   font-weight: bold;
 
   &:focus{
-    background-color: var(--color-2);
+    background-color: var(--color-4);
     border-radius: 5px;
-    border: 1px solid var(--color-4);
+    border: 1px solid var(--color-1);
     color: var(--color-1);
     font-weight: bold;
   }
@@ -209,6 +66,5 @@ a {
     font-weight: bold;
   }
 }
-
 
 

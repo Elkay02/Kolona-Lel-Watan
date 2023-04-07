@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./pages.scss";
+import logo from '../Images/logo.png';
 
 function Register() {
   const [firstName, setFirstName] = useState("");
@@ -40,21 +41,19 @@ function Register() {
   };
 
   return (
-    <div className="container h-100 container-register">
-      <div className="row h-100 justify-content-center align-items-center">
+    <div className="container container-register">
         <div className="col-12 col-md-6 col-lg-4">
-          <div className="card border-0 shadow">
-            <div className="card-body">
-              <h2 className="text-center text-primary mb-4">Sign up</h2>
+            <div className="form-container ">
+              <h2 className="text-center fw-bold fst-italic m-0 p-0">Sign up</h2>
               <img
-                className="logo d-block mx-auto mb-4"
-                src="https://img.freepik.com/free-vector/charity-logo-template-no-profit-branding-design-vector_53876-140577.jpg"
+                className="logo d-block m-0"
+                src={logo}
                 alt="Logo"
               />
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                   <label htmlFor="firstName" className="form-label">
-                    First Name:
+                    First Name
                   </label>
                   <input
                     type="text"
@@ -67,7 +66,7 @@ function Register() {
                 </div>
                 <div className="mb-3">
                   <label htmlFor="lastName" className="form-label">
-                    Last Name:
+                    Last Name
                   </label>
                   <input
                     type="text"
@@ -80,7 +79,7 @@ function Register() {
                 </div>
                 <div className="mb-3">
                   <label htmlFor="email" className="form-label">
-                    Email:
+                    Email
                   </label>
                   <input
                     type="text"
@@ -93,7 +92,7 @@ function Register() {
                 </div>
                 <div className="mb-3">
                   <label htmlFor="password" className="form-label">
-                    Password:
+                    Password
                   </label>
                   <input
                     type="password"
@@ -105,7 +104,7 @@ function Register() {
                   />
                 </div>
                 <div className="d-grid">
-                  <button type="submit" className="btn btn-primary">
+                  <button type="submit" className="btn style-primary-btn">
                     Sign up
                   </button>
                 </div>
@@ -115,8 +114,6 @@ function Register() {
               </form>
             </div>
           </div>
-        </div>
-      </div>
     </div>
   );
 }

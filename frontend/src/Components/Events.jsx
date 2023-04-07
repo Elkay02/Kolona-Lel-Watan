@@ -3,6 +3,8 @@ import React from "react";
 // create eventcards using react-bootstrap
 import { Card, Button, Container, Row, Col } from "react-bootstrap";
 
+import {BsFillPersonFill , BsFillPeopleFill} from "react-icons/bs"
+
 // import css file
 import "./components.css";
 
@@ -64,17 +66,33 @@ function generateRandomDescription() {
 const EventCard = (event) => {
     return (
     <div className="card">
-       <div className="card-footer">
-        <small className="text-muted"> deadline : 20 April 2023 </small>
-    </div>
+  
     <div className="card-horizontal">
         <div className="img-square-wrapper">
             <img className="card-img" src={image} alt="Card image cap" />
         </div>
         <div className="card-body">
             <h4 className="card-title">{event.title}</h4>
+            <div className="card-subtitle">
+              <div className="d-flex">
+                  <BsFillPersonFill className="card-icon"/> 
+                  <p className="card-text">Organization</p>
+              </div>
+              <div className="d-flex">
+                  <BsFillPeopleFill className="card-icon"/> 
+                  <p className="card-text">10 / 20</p>
+              </div>
+            </div>
+          
             <p className="card-text">{event.description}</p>
             <button className="btn style-primary-btn">Read more</button>
+        </div>
+        <div className="card-tag-shadow"> lol
+        </div>
+        <div className="card-tag">
+          <p></p>
+          <p>FEB</p>
+          <p>20</p>
         </div>
     </div>
 </div>

@@ -10,7 +10,7 @@ const SearchEntry = (props) => {
     const data = ["option1", "option2", "option3","option4","option5","option6","option7","option8","option9","option10"];
 
     return (<div className="p-2 ">
-        <label for="organization" className="fw-bolder">{props.title} </label>
+        {/* <label for="organization" className="fw-bolder">{props.title} </label> */}
             <div className="p-2 d-flex">
                 <input list="searchbar" id="organization" name="organization" className="form-control w-100 searchbar-form" placeholder={props.title} />
                 <datalist id="searchbar">
@@ -47,7 +47,7 @@ const BootstrapNavbar = () => {
 
                     <Navbar.Brand href=" " className=" p-1 mx-5 brand fst-italic fs-3 ">
                         <img src={logo} className="img-fluid"/>
-                        Kolona Lel Watan
+                        {/* Kolona Lel Watan */}
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav" className="navbar-collapse align-content-end justify-content-end">
