@@ -60,12 +60,15 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/auth/register", inputs);
+      const res = await axios.post("/auth/register", inputs);
+      console.log(res)
       navigate("/login");
     } catch (err) {
       setError(err.response.data);
     }
   };
+
+  //console.log(inputs)
 
   return (
     <div className="container container-register">
