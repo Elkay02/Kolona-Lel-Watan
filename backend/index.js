@@ -1,31 +1,13 @@
-import  express  from "express";
-import  connection  from "./db.js";
+import express from "express"
+import authRoutes from  "./routes/auth.js"
+//import userRoutes from  "./routes/users.js"
 
-const  app = express();
+const app = express()
 
-app.use(express.json());
+app.use(express.json())
+app.use("/api/auth", authRoutes)
+//app.use("/api/users", userRoutes)
 
-app.listen(3306, () => {
-    console.log("Server is running on port 8080");
-    } );
-
-app.get("/test", (req, res) => {
-    res.send("Hello World");
-    }
-    );
-
-// print table query
-const  printTableQuery = `Select * from user_profile`;
-
-// get all users
-app.get("/users", (req, res) => {
-    connection.query(printTableQuery, (err, result) => {
-        if (err) {
-            console.log(err);
-            } else {
-            res.send(result);
-            }
-        }
-        );
-    }
-    );
+app.listen(8800, ()=>{
+  console.log("Connected!")
+})
