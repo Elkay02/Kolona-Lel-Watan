@@ -1,32 +1,35 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./pages.scss";
 import logo from '../Images/logo.png';
+import axios from "axios";
+//import { useContext } from "react";
 
 function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
+  const [inputs, setInputs] = useState({
+    email_address: "",
+    password: "",
+  });
+  const [err, setError] = useState(null);
+
+  const navigate = useNavigate();
+
+//  const { login } = useContext(AuthContext);
+
+
+  const handleChange = (e) => {
+    setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const emailRegex = /\S+@\S+\.\S+/;
-    const isValidEmail = emailRegex.test(email);
-    const isValidPassword = password.length >= 8;
-    if (!isValidEmail) {
-      alert("Please enter a valid email address");
-    } else if (!isValidPassword) {
-      alert("Password must be at least 8 characters long");
-    } else {
-      alert("Login successful!");
-      // Here you would redirect to another page
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post("/auth/login", inputs);
+      console.log(res);   
+      navigate("/");
+    } catch (err) {
+      setError(err.response.data);
     }
   };
 
@@ -47,12 +50,12 @@ function Login() {
                     Email
                   </label>
                   <input
-                    type="text"
-                    id="email"
-                    value={email}
-                    onChange={handleEmailChange}
-                    className="form-control reg-form"
                     required
+                    type="email"
+                    placeholder="email address"
+                    name="email_address"
+                    onChange={handleChange}
+                    className="form-control reg-form"
                   />
                 </div>
                 <div className="mb-3">
@@ -61,17 +64,18 @@ function Login() {
                   </label>
                   <input
                     type="password"
-                    id="password"
-                    value={password}
-                    onChange={handlePasswordChange}
+                    placeholder="password"
+                    name="password"
+                    onChange={handleChange}
                     className="form-control reg-form"
                     required
                   />
                 </div>
                 <div className="d-grid">
-                  <button type="submit" className="btn  style-primary-btn">
+                  <button type="submit" className="btn  style-primary-btn" onClick={handleSubmit}>
                     Sign in
                   </button>
+                  {err && <p>{err}</p>}
                 </div>
                 <p className="text-center mt-3">
                   Don't have an account? <Link to="/register">Sign up</Link>
