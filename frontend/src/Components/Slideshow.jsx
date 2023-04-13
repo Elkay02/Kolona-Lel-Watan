@@ -34,7 +34,7 @@ const dataset = [
 
 function Slideshow(props) {
   return (
-    <div className='w-100 h-100 nav-slideshow'>
+    <div className='w-100 h-100 nav-slideshow '>
     <Carousel controls={false} indicators={false} interval={null} slide={false} i>
         <Carousel.Item >
             <img className="d-block w-100" src={image} alt=""/>

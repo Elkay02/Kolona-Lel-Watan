@@ -65,13 +65,13 @@ function generateRandomDescription() {
 
 const EventCard = (event) => {
     return (
-    <div className="card">
+    <div className="event-card rounded">
   
     <div className="card-horizontal">
         <div className="img-square-wrapper">
             <img className="card-img" src={image} alt="Card image cap" />
         </div>
-        <div className="card-body">
+        <div className="card-body px-2">
             <h4 className="card-title">{event.title}</h4>
             <div className="card-subtitle">
               <div className="d-flex">
@@ -106,7 +106,7 @@ const Events = (props) => {
         <hr />
         <h2 className="text-center fw-bolder fs-italic">{props.title}</h2>
         <hr />
-        <Row xs={1} md={2} className="g-4">
+        <Row xs={1} md={props.width} className="g-4">
         {data.map((event) => (
           <Col>
             <EventCard title={event.title} description={event.description} />
