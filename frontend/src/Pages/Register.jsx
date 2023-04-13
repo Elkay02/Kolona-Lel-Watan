@@ -6,44 +6,6 @@ import axios from "axios";
 
 
 function Register() {
-<<<<<<< HEAD
-  // const [firstName, setFirstName] = useState("");
-  // const [last_Name, setLastName] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-
-  // const handleFirstNameChange = (event) => {
-  //   setFirstName(event.target.value);
-  // };
-
-  // const handleLastNameChange = (event) => {
-  //   setLastName(event.target.value);
-  // };
-
-  // const handleEmailChange = (event) => {
-  //   setEmail(event.target.value);
-  // };
-
-  // const handlePasswordChange = (event) => {
-  //   setPassword(event.target.value);
-  // };
-
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   const emailRegex = /\S+@\S+\.\S+/;
-  //   const isValidEmail = emailRegex.test(email);
-  //   const isValidPassword = password.length >= 8;
-  //   if (!isValidEmail) {
-  //     alert("Please enter a valid email address");
-  //   } else if (!isValidPassword) {
-  //     alert("Password must be at least 8 characters long");
-  //   } else {
-  //     alert("Registration successful!");
-  //     // Here you would redirect to another page
-  //   }
-  // };
-=======
->>>>>>> d3d7312f2c4947744547adaea6e9fa7ff6cff34b
 
   const [inputs, setInputs] = useState({
     first_name: "",
