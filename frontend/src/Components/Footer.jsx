@@ -1,5 +1,7 @@
 import React from "react";
 import { BsInstagram,BsFacebook,BsLinkedin,BsTwitter,BsGithub } from "react-icons/bs";
+// Link
+import { Link } from "react-router-dom";
 const Footer = () => {
 return(
 
@@ -68,13 +70,21 @@ return(
                 className="mb-4 mt-0 d-inline-block mx-auto"
                 />
             <p>
-              <a href="#!" className=" style-primary">Your Account</a>
+              <Link to="/user_profile" className="style-primary">
+              My Account
+              </Link>
             </p>
             <p>
-              <a href="#!" className=" style-primary">Become an Affiliate</a>
+              <Link to="/create_event" className="style-primary">
+              Create Event
+              </Link>
             </p>
             <p>
-              <a href="#!" className=" style-primary">Help and Support</a>
+              {/* turn above to link */}
+              <Link to="/faq"  className="style-primary">
+              Help and Support
+              </Link>
+
             </p>
           </div>
           <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 style-primary">

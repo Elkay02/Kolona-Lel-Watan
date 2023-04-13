@@ -6,6 +6,7 @@ import axios from "axios";
 
 
 function Register() {
+<<<<<<< HEAD
   // const [firstName, setFirstName] = useState("");
   // const [last_Name, setLastName] = useState("");
   // const [email, setEmail] = useState("");
@@ -41,6 +42,8 @@ function Register() {
   //     // Here you would redirect to another page
   //   }
   // };
+=======
+>>>>>>> d3d7312f2c4947744547adaea6e9fa7ff6cff34b
 
   const [inputs, setInputs] = useState({
     first_name: "",

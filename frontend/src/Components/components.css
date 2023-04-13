@@ -56,6 +56,9 @@
     width:max-content;
 }
 
+.nav-btns>.btn-light{
+    color: var(--color-4) !important;
+}
 .nav-btns>.btn-light:hover{
     transform: scale(1.05);
 }
@@ -88,8 +91,14 @@
 .style-secondary{
     background-color: var(--color-2) !important;
     border-radius: 2em;
-    color: var(--color-5) !important;
+    color: var(--color-4) !important;
     font-weight: bold;
+}
+
+.style-secondary:hover{
+    transform: scale(1.05);
+    color: var(--color-4) !important;
+    border-bottom: 1px solid var(--color-2) !important;
 }
 
 .style-primary-btn{
@@ -102,7 +111,6 @@
 .style-primary-btn:hover{
     transform: scale(1.05);
     color: var(--color-4) !important;
-    border-bottom: 1px solid var(--color-2) !important;
 }
 
 .style-primary-inverted{
@@ -156,7 +164,7 @@
     image-rendering: -webkit-optimize-contrast;
 }
 
-.card{
+.event-card{
     background-color: white;
     border: 1px solid var(--color-1);
     height: 300px;
