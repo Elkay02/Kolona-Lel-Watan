@@ -7,7 +7,7 @@ import axios from "axios";
 
 function Register() {
   // const [firstName, setFirstName] = useState("");
-  // const [lastName, setLastName] = useState("");
+  // const [last_Name, setLastName] = useState("");
   // const [email, setEmail] = useState("");
   // const [password, setPassword] = useState("");
 
@@ -43,9 +43,9 @@ function Register() {
   // };
 
   const [inputs, setInputs] = useState({
-    firstname: "",
-    lastname: "",
-    email: "",
+    first_name: "",
+    last_name: "",
+    email_address: "",
     password: "",
   });
 
@@ -82,40 +82,40 @@ function Register() {
               />
               <form>
                 <div className="mb-3">
-                  <label htmlFor="firstName" className="form-label">
+                  <label htmlFor="first_Name" className="form-label">
                     First Name
                   </label>
                   <input
                     type="text"
-                    placeholder="firstname"
-                    name="firstname"
+                    placeholder="first name"
+                    name="first_name"
                     onChange={handleChange}
                     className="form-control reg-form"
                     required
                   />
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="lastName" className="form-label">
+                  <label htmlFor="last_Name" className="form-label">
                     Last Name
                   </label>
                   <input
                     type="text"
-                    placeholder="lastname"
-                    name="lastname"
+                    placeholder="last name"
+                    name="last_name"
                     onChange={handleChange}
                     className="form-control reg-form"
                     required
                   />
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="email" className="form-label">
+                  <label htmlFor="email_address" className="form-label">
                     Email
                   </label>
                   <input
                     required
                     type="email"
-                    placeholder="email"
-                    name="email"
+                    placeholder="email address"
+                    name="email_address"
                     onChange={handleChange}
                     className="form-control reg-form"
                   />
