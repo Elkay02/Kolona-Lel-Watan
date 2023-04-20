@@ -3,7 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import "./pages.scss";
 import logo from '../Images/logo.png';
 import axios from "axios";
-//import { useContext } from "react";
+import { useContext } from "react";
+import { AuthContext } from "../context/authContext";
+
 
 function Login() {
 
@@ -15,7 +17,7 @@ function Login() {
 
   const navigate = useNavigate();
 
-//  const { login } = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
 
 
   const handleChange = (e) => {
@@ -25,8 +27,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/auth/login", inputs);
-      console.log(res);   
+      await login(inputs)
       navigate("/");
     } catch (err) {
       setError(err.response.data);
