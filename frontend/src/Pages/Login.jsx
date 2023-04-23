@@ -81,6 +81,9 @@ function Login() {
                 <p className="text-center mt-3">
                   Don't have an account? <Link to="/register">Sign up</Link>
                 </p>
+                <p>
+                  Are you an organization? <Link to="/login_org">Sign in</Link>
+                </p>
               </form>
             </div>
           </div>

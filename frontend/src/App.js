@@ -4,15 +4,18 @@ import "./index.css"
 import { createBrowserRouter,RouterProvider,Route } from 'react-router-dom';
 import Home from './Pages/Home';
 import Login from './Pages/Login';
+import Login_org from './Pages/Login_org';
 import Register from './Pages/Register';
 import AboutUs from './Pages/AboutUs';
 import FAQ from './Pages/FAQ';
 import CreateEvent from './Pages/CreateEvent';
 import UserProfileSettings from './Pages/UserProfileConfig';
 import UserProfile from './Pages/UserProfile';
-import Booking from './Pages/Booking';
+import Single from './Pages/Single';
 import ContactUs from './Pages/ContactUs';
 import OrgProfile from './Pages/OrgProfile';
+import Register_org from './Pages/Register_org';
+import RequireAuth from './Components/RequireAuth'
 
 const browserRouter = createBrowserRouter([
   {
@@ -37,32 +40,36 @@ const browserRouter = createBrowserRouter([
   },
   {
     path:'/create_event',
-    element:<CreateEvent />
+    element:(<RequireAuth> <CreateEvent />  </RequireAuth>)
   },
   {
-    path:'/my_events',
+    path:'/user_profile_settings/:id',
     element:<UserProfileSettings />
   },
   {
-    path:'/my_profile',
+    path:'/user_profile/:id',
     element:<UserProfile />
   },
   {
-    path:'/user_profile',
-    element:<UserProfile />
-  },
-  {
-    path:'/booking',
-    element:<Booking />
+    path:'/post/:id',
+    element: <Single />
   },
   {
     path:'/contactus',
     element:<ContactUs />
   },
   {
-    path:'/org_profile',
-    element:<OrgProfile />
-  }
+    path:'/org_profile/:id',
+    element: <OrgProfile />
+  },
+  {
+    path:'/register_org',
+    element:<Register_org/>
+  },
+  {
+    path:'/login_org',
+    element:<Login_org/>
+  },
   ]);
 
 function App() {

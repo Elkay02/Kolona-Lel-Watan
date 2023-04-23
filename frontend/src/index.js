@@ -4,17 +4,17 @@ import './index.css';
 import "bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import $ from 'jquery';
-import Popper from 'popper.js';
 import App from './App';
-import { AuthContextProvider } from './context/authContext';
+import { AuthContextProvider , AuthContextProvider2  } from './context/authContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <AuthContextProvider>
-      <App />
-    </AuthContextProvider>
+    <AuthContextProvider2>
+      <AuthContextProvider>
+        <App />
+      </AuthContextProvider>
+    </AuthContextProvider2>
   </React.StrictMode>
 );
 

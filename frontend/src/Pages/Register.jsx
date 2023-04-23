@@ -107,6 +107,9 @@ function Register() {
                 <p className="text-center mt-3">
                   Already have an account? <Link to="/login">Log in</Link>
                   </p>
+                  <p className="text-center mt-3">
+                  Are you an organization? <Link to="/register_org">Register here</Link>
+                  </p>
               </form>
             </div>
           </div>
