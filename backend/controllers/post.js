@@ -2,10 +2,11 @@ import { db } from "../db.js";
 import jwt from "jsonwebtoken";
 
 export const getPosts = (req, res) => {
-  const q =  "SELECT * FROM event_posts";
+  const q =  "SELECT *, DATE_FORMAT(event_date, '%Y-%m-%d') AS event_date FROM event_posts , organization WHERE event_posts.organizationID = organization.OrganizationID ";
 
   db.query(q, (err, data) => {
     if (err) return res.status(500).send(err);
+    console.log(data)
 
     return res.status(200).json(data);
   });

@@ -10,6 +10,11 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import axios from "axios";
 import moment from "moment";
+
+
+import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
+import { makeRequest } from "../axios";
+
 import { useContext } from "react";
 import { AuthContext } from "../context/authContext";
 
@@ -38,32 +43,29 @@ const Single = () => {
   const postId = location.pathname.split("/")[2];
 
   const { currentUser } = useContext(AuthContext);
+  
+
+  //there are no posts with this id : 
   if(!post){
     navigate("/");
   }
 
-  console.log(Booked)
+ 
   useEffect(() => {
     const fetchData = async () => {
       try {
         // get the data of the post posted on this page
         const res = await axios.get(`/posts/${postId}`);
         setPost(res.data);
-
-        // check if the user has booked this event or not
-        // const res2 = await axios.get(`/bookings/${postId}` , {
-        //   userId : currentUser.userID
-        // });
-        // setBooked(res2.data);
-        
       } catch (err) {
         console.log(err);
       }
     };
     fetchData();
     
-  }, [postId,Booked]);
+  }, [postId]);
 
+  //delete event post 
   const handleDelete = async ()=>{
     try {
       await axios.delete(`/posts/${postId}`);
@@ -73,6 +75,38 @@ const Single = () => {
     }
   }
 
+  const { isLoading, error, data } = useQuery(["bookings", postId], () =>
+    makeRequest.get("/bookings?postId=" + postId).then((res) => {
+      return res.data;
+    })
+  );
+  console.log(data)
+
+
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation(
+    (booked) => {
+      if (booked) return makeRequest.delete("/bookings?postId=" + postId + "&userId=" +  currentUser.userID);
+
+      return makeRequest.post("/bookings", { postId  , userId : currentUser.userID });
+    },
+    {
+      onSuccess: () => {
+        // Invalidate and refetch
+        queryClient.invalidateQueries(["bookings"]);
+      },
+    }
+  );
+
+
+
+  const handleBook = () => {
+    console.log("here")
+    mutation.mutate(data.includes(currentUser.userID));
+  };
+
+  
   // const handleBooking = async ()=>{
   //   try {
   //     await axios.post(`/bookings/${postId}` , {
@@ -100,7 +134,7 @@ const Single = () => {
                         </header>
                         <figure class="mb-4"><img class="img-fluid rounded" src={`../upload/${post?.media}`} alt="" /></figure>
                         
-                        <section class="mb-5">
+                        <section class="mb-5 fw-bold">
                             <p>
                               {post.post_text}
                             </p>
@@ -120,7 +154,19 @@ const Single = () => {
                                       <p className="card-text">Date :  {post.event_date}</p>
                                   </div>
                                   <div className="d-flex">
-                                      <p className="card-text">Participants :  {post.nbrParticipants} / {post.goalNbrParticipants}</p>
+                                      <p className="card-text">Participants :  
+                                      {data?.length} / {post.goalNbrParticipants}
+                                     {/* {
+                                      isLoading ? (
+                                        "loading"
+                                      ) : data.includes(currentUser.userID) ? (
+                                        {data.length} / {post.goalNbrParticipants}
+                                      ) : (
+                                        {data.length} / {post.goalNbrParticipants}
+                                      )
+                                    }  */}
+                                      
+                                      </p>
                                   </div>
                             </div>
                         </div>
@@ -153,25 +199,48 @@ const Single = () => {
                             </>
                             
                             :
-                            !!Booked ?
-                            <>
-                              <button className="btn style-primary-btn w-100" >Book</button>
-                            </>
+                            // we are handle booking and unbooking
+                                      // !!Booked ?
+                                      // <>
+                                      //   <button className="btn style-primary-btn w-100" onClick={handleBook} >Book</button>
+                                      // </>
+                                      // :
+                                      // <>
+                                      //     <button className="btn style-primary-btn w-100">UnBook</button>
+                                      // </>
+
+
+                                    isLoading ? (
+                                        "loading"
+                                      ) : data.includes(currentUser.userID) ? (
+                                        <button className="btn style-primary-btn w-100" style={{backgroundColor:"red !important"}} onClick={handleBook}>Unbook</button>
+                                      ) : 
+                                      data?.length < post.goalNbrParticipants ?
+                                      (
+
+                                        <button className="btn style-primary-btn w-100" onClick={handleBook}>Book</button>
+                                      ):
+                                      (
+                                        <p className="fw-bold fst-italic single-msg"> Sorry, We have reached the maximum number of Participants </p>
+                                      )
                             :
-                            <>
-                                <button className="btn style-primary-btn w-100">UnBook</button>
-                            </>
-                            :
-                            <>
+
+                            data?.length < post.goalNbrParticipants ?
+                            (
+
+                              <>
                             
-                                <Link to={"/login"} className="w-100">
-                                <button className="btn style-primary-btn w-100">Book</button>
-                                </Link>
-                                    
-                            </>
+                              <Link to={"/login"} className="w-100">
+                              <button className="btn style-primary-btn w-100">Book</button>
+                              </Link>
+                                  
+                              </>
+                            ):
+                            (
+                              <p className="fw-bold fst-italic single-msg"> Sorry, We have reached the maximum number of Participants </p>
+                            )
+                            
                         }
-                    {/* <button className="btn style-primary-btn w-25">Edit</button>
-                    <button className="btn style-primary-btn w-25">Delete</button> */}
                     </div>
                 </div>
             </div>

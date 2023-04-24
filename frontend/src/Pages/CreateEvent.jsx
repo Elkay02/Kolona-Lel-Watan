@@ -171,7 +171,7 @@ const CreateEvent = () => {
             id="file"
             name=""
             onChange={(e) => setFile(e.target.files[0])}
-            value={file}
+            // value={file}
             />
           <label className="file btn booking-cat w-100" htmlFor="file">
             Choose File

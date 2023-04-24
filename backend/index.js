@@ -6,6 +6,7 @@ import bookingRoutes from "./routes/bookings.js"
 //import userRoutes from  "./routes/users.js"
 import cookieParser from "cookie-parser";
 import multer from "multer";
+import cors from "cors";
 
 
 
@@ -13,8 +14,17 @@ import multer from "multer";
 
 const app = express()
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Credentials", true);
+  next();
+});
 app.use(express.json());
 app.use(cookieParser());
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+  })
+);
 
 
 const storage = multer.diskStorage({

@@ -16,6 +16,7 @@ import ContactUs from './Pages/ContactUs';
 import OrgProfile from './Pages/OrgProfile';
 import Register_org from './Pages/Register_org';
 import RequireAuth from './Components/RequireAuth'
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const browserRouter = createBrowserRouter([
   {
@@ -73,9 +74,14 @@ const browserRouter = createBrowserRouter([
   ]);
 
 function App() {
+  
+  
+  const queryClient = new QueryClient();
   return (
     <div id='App'>
-      <RouterProvider router={browserRouter}/>
+      <QueryClientProvider client={queryClient}>
+            <RouterProvider router={browserRouter}/>
+      </QueryClientProvider>
     </div>
   );
 }
