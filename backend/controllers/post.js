@@ -2,11 +2,10 @@ import { db } from "../db.js";
 import jwt from "jsonwebtoken";
 
 export const getPosts = (req, res) => {
-  const q =  "SELECT *, DATE_FORMAT(event_date, '%Y-%m-%d') AS event_date FROM event_posts , organization WHERE event_posts.organizationID = organization.OrganizationID ";
+  const q =  "SELECT *,  DATE_FORMAT(event_date, '%Y-%m-%d') AS event_date,e.location AS location FROM event_posts e, organization o WHERE e.organizationID = o.OrganizationID ";
 
   db.query(q, (err, data) => {
     if (err) return res.status(500).send(err);
-    console.log(data)
 
     return res.status(200).json(data);
   });
@@ -18,6 +17,16 @@ export const getPost = (req, res) => {
     if (err) return res.status(500).json(err);
 
     return res.status(200).json(data[0]);
+  });
+};
+
+
+export const getOrgPost = (req, res) => {
+  const q ="SELECT * , DATE_FORMAT(event_date, '%Y-%m-%d') AS event_date  FROM event_posts  WHERE organizationID = ?";
+  db.query(q, [req.params.id], (err, data) => {
+    if (err) return res.status(500).json(err);
+
+    return res.status(200).json(data);
   });
 };
 
@@ -45,6 +54,7 @@ export const addPost = (req, res) => {
     ];
 
     db.query(q, [values], (err, data) => {
+      console.log(q)
         if (err) return res.status(500).json(err);
       return res.json("Post has been created.");
     });
@@ -92,6 +102,7 @@ export const updatePost = (req, res) => {
     ];
 
     db.query(q, [...values], (err, data) => {
+      console.log(q)
       if (err) return res.status(500).json(err);
       return res.json("Post has been updated.");
     });

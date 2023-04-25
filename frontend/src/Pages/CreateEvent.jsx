@@ -8,6 +8,7 @@ import { AuthContext2 } from '../context/authContext';
 import { useContext } from 'react';
 import BootstrapNavbar from '../Components/Navbar';
 import Footer from '../Components/Footer';
+import { Locations , Categories } from '../predefindData';
 
 const CreateEvent = () => {
     // new code
@@ -140,9 +141,17 @@ const CreateEvent = () => {
           </div>
           <div class="form-group">
             <label for="location" class="form-label">Location</label>
-            <input type="text" class="form-control" id="location" name="location" required
+            {/* <input type="text" class="form-control" id="location" name="location" list='location-list'  required
             onChange={(e) => setLocation(e.target.value)} value={location}
-            />
+            /> */}
+            <select  class="form-control" id="location" name="location"   required
+            onChange={(e) => setLocation(e.target.value)} value={location}>
+              {
+                Locations.map((item, index) => (
+                  <option key={index}>{item}</option>
+                ))
+              }
+            </select>
           </div>
           <div class="form-group">
             <label for="desc" class="form-label">Description</label>
@@ -152,8 +161,16 @@ const CreateEvent = () => {
           </div>
           <div class="form-group">
             <label for="cat" class="form-label">Category</label>
-            <input type="text" class="form-control" id="cat" name="cat" required
-            onChange={(e) => setCat(e.target.value)} value={cat}/>
+            {/* <input type="text" class="form-control" id="cat" name="cat" required
+            onChange={(e) => setCat(e.target.value)} value={cat}/> */}
+             <select  class="form-control" id="location" name="location" required
+            onChange={(e) => setCat(e.target.value)} value={cat}>
+              {
+                Categories.map((item, index) => (
+                  <option key={index}>{item}</option>
+                ))
+              }
+            </select>
           </div>
 
           <div class="form-group">

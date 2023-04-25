@@ -3,10 +3,10 @@ import React, { useEffect, useState } from "react";
 // create eventcards using react-bootstrap
 import { Card, Button, Container, Row, Col } from "react-bootstrap";
 
-import {BsFillPersonFill , BsFillPeopleFill} from "react-icons/bs"
-import {IoLocationSharp} from "react-icons/io5"
-import {CgOrganisation} from "react-icons/cg"
-import{MdOutlineCategory} from "react-icons/md"
+import { BsFillPersonFill, BsFillPeopleFill } from "react-icons/bs"
+import { IoLocationSharp } from "react-icons/io5"
+import { CgOrganisation } from "react-icons/cg"
+import { MdOutlineCategory } from "react-icons/md"
 import { Link } from "react-router-dom";
 
 // import css file
@@ -69,7 +69,7 @@ import imagealt from '../Images/event1.jpg';
 // }
 
 
-const EventCard = (event) => {
+export const EventCard = (event) => {
   // array of all months example Jan,Feb
   const months = [
     "Jan",
@@ -85,100 +85,120 @@ const EventCard = (event) => {
     "Nov",
     "Dec",
   ];
-    const month = event.date.split("-")[1];
-    const day = event.date.split("-")[2];
+  const month = event.date.split("-")[1];
+  const day = event.date.split("-")[2];
 
-    const monthName = months[month - 1];
+  const monthName = months[month - 1];
 
-    return (
+  return (
     <div className="event-card rounded">
-  
-    <div className="card-horizontal">
+
+      <div className="card-horizontal">
         <div className="img-square-wrapper">
-            <img className="card-img" src={`../upload/${event?.media}`}  />
+          <img className="card-img" src={`../upload/${event?.media}`} />
         </div>
         <div className="card-body px-2 ">
-            <h4 className="card-title fw-bold">{event.title}</h4>
-            <div className="card-subtitle color-6 d-block">
+          <h4 className="card-title fw-bold">{event.title}</h4>
+          <div className="card-subtitle color-6 d-block">
+            <div className="d-flex">
               <div className="d-flex">
-              <div className="d-flex">
-                  <CgOrganisation className="card-icon"/>
-                  <Link to={"/org_profile/"+event.orgId}>
-                  <small className="card-text mx-1 ">{event.org_name}</small>
-                  </Link>
+                {
+                  event?.org_name ?
+                  <>
+                  
+                <CgOrganisation className="card-icon" />
+                
+                <Link to={"/org_profile/" + event.orgId}>
+                  <small className="card-text mx-1 ">{event?.org_name}</small>
+                </Link>
+                  </>:
+                  <>
+                  </>
+              }                 
+                
               </div>
               <div className="d-flex">
-                  <BsFillPeopleFill className="card-icon"/> 
-                  <small className="card-text mx-1">{event.numP} / {event.goalNumP}</small>
+                <BsFillPeopleFill className="card-icon" />
+                <small className="card-text mx-1">{event.numP} / {event.goalNumP}</small>
               </div>
 
-              </div>
-
-
-              <div className="d-flex">
-                  <IoLocationSharp className="card-icon"/>
-                  <small className="card-text mx-1">{event.location}</small>
-              </div>
-              <div className="d-flex">
-                  <MdOutlineCategory className="card-icon"/>
-                  <small className="card-text mx-1">{event.category}</small>
-              </div>
             </div>
-          
-            <p className="card-text mx-1">{event.description}</p>
-            <Link to={"/post/" + event.id}>
-            
+
+
+            <div className="d-flex">
+              <IoLocationSharp className="card-icon" />
+              <small className="card-text mx-1">{event.location}</small>
+            </div>
+            <div className="d-flex">
+              <MdOutlineCategory className="card-icon" />
+              <small className="card-text mx-1">{event.category}</small>
+            </div>
+          </div>
+
+          <p className="card-text mx-1">{event.description}</p>
+          <Link to={"/post/" + event.id}>
+
             <button className="btn style-primary-btn">Read more</button>
-            </Link>
+          </Link>
         </div>
-        <div className="card-tag-shadow"> 
-        lol
+        <div className="card-tag-shadow">
+          lol
         </div>
         <div className="card-tag">
           <p></p>
           <p>{monthName}</p>
           <p>{day}</p>
         </div>
+      </div>
     </div>
-</div>
-    );
+  );
 }
 
 // create body of events page
 const Events = (props) => {
+  console.log("rerendered");
+  console.log(props.data);
+  console.log(props.filters);
+  const events = props.data
+  .filter(item => item.category === props.filters.category 
+    || item.location === props.filters.location
+    || item.event_date === props.filters.date 
+    || item.name === props.filters.organization )
 
-  useEffect(() => {
-  }, [props.data]);
+  .map(item => (
+    <Col key={item.postID}>
+      <EventCard title={item.title} description={item.post_text} location={item.location}
+        category={item.category} numP={item.nbrParticipants} goalNumP={item.goalNbrParticipants}
+        date={item.event_date} media={item.media} org_name={item.name} id={item.postID} orgId={item.OrganizationID}
+      />
+    </Col>
+  ))
 
- console.log(props.data)
-    return (
-      <div className="m-1">
-        <hr />
-        <h2 className="text-center fw-bolder fs-italic">{props.title}</h2>
-        <hr />
-        <Row xs={1} md={props.width} className="g-4">
+  return (
+    <div className="m-1">
+      <hr />
+      <h2 className="text-center fw-bolder fst-italic">{props.title}</h2>
+      <hr />
+      <Row xs={1} md={props.width} className="g-4">
         {
-         Array.isArray(props.data)?
-          props.data.map((item) => (
-            <Col>
-            <EventCard title={item.title} description={item.post_text} location={item.location}
-            category={item.category} numP={item.nbrParticipants} goalNumP={item.goalNbrParticipants} 
-            date={item.event_date} media={item.media} org_name={item.name} id={item.postID} orgId={item.OrganizationID}/>
-          </Col> 
+          (props.filters.category == "" &&
+          props.filters.location == "" &&
+          props.filters.date == "" &&
+          props.filters.organization == "")?
+          props.data.map(item => (
+            <Col key={item.postID}>
+              <EventCard title={item.title} description={item.post_text} location={item.location}
+                category={item.category} numP={item.nbrParticipants} goalNumP={item.goalNbrParticipants}
+                date={item.event_date} media={item.media} org_name={item.name} id={item.postID} orgId={item.OrganizationID}
+              />
+            </Col>
           ))
           :
-        <p>No data found.</p>
-      
-          }
-         
-         {/* .map((event) => ( */}
-          {/* <Col>
-            <EventCard title={event.postID} description={event.location} />
-          </Col> */}
-        {/* ))} */}
-    </Row>
-      </div>
-    );
+          events
+        }
+      </Row>
+    </div>
+  );
 }
 
 

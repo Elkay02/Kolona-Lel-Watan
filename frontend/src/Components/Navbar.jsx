@@ -18,12 +18,12 @@ const BootstrapNavbar = () => {
     const location = useLocation();
     
     return (
-            <div className="p-0 m-0 mb-2">
+            <div className="p-0 m-0 ">
                 <Navbar bg="light" variant="light" expand="lg" sticky="top" className="style-primary p-0 m-0">
 
                     <Navbar.Brand href=" " className=" p-1 mx-5 brand fst-italic fs-3 ">
                         <img src={logo} className="img-fluid"/>
-                        {/* Kolona Lel Watan */}
+                        Kolona Lel Watan
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav" className="navbar-collapse align-content-end justify-content-end">

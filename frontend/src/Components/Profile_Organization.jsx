@@ -3,6 +3,7 @@ import { Container, Col, Card, Image, Row, Button } from "react-bootstrap";
 import { useContext } from "react";
 import { AuthContext } from "../context/authContext";
 import { Link } from "react-router-dom";
+import { Location } from "react-router-dom";
 
 const Profile = (props) => {
 
@@ -34,17 +35,11 @@ const Profile = (props) => {
           <Row className=" user__detail ">
             <Col xs={12} md={8}>
               <h4 className="name mb-0">
-                {props.data.first_name} {props.data.last_name}  
+                {props.data.name}  
                 </h4>
-                <small
-                  style={{ fontSize: "small" }}
-                  className="text-muted ml-5"
-                >
-                  {props.data.gender}
-                </small>
               <p className="my-0 occupation">
                 {/* {userProfile.title} */}
-                {props.data.profession}
+                {props.data.type}
               </p>
               {/* <p className="my-0 location text-muted">
                 Electronics and Communication Engineer & Frontend Developer •
@@ -55,8 +50,8 @@ const Profile = (props) => {
               
               <div className="d-flex justify-content-start w-100 mt-1">
                 {
-                  currentUser.userID === props.data.userID ?
-                  <Link to={"/user_profile_settings/" + currentUser.userID} state={props.data}>
+                  currentUser.OrganizationID === props.data.OrganizationID ?
+                  <Link to={"/org_profile_settings/" + currentUser.OrganizationID}>
                     <button className=" btn style-primary-btn ">
                         Edit Profile 
                     </button>

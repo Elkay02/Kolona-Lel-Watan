@@ -3,6 +3,7 @@ import authRoutes from  "./routes/auth.js"
 import auth2Routes from "./routes/auth2.js"
 import postRoutes from "./routes/posts.js"
 import bookingRoutes from "./routes/bookings.js"
+import accountRoutes from "./routes/accounts.js"
 //import userRoutes from  "./routes/users.js"
 import cookieParser from "cookie-parser";
 import multer from "multer";
@@ -50,6 +51,7 @@ app.use("/backend/auth", authRoutes)
 app.use("/backend/auth2",auth2Routes)
 app.use("/backend/posts", postRoutes);
 app.use("/backend/bookings", bookingRoutes);
+app.use("/backend/accounts",accountRoutes);
 
 //app.use("/backend/users", userRoutes)
 
