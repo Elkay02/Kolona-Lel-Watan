@@ -89,7 +89,7 @@ export const updatePost = (req, res) => {
     const postId = req.params.id;
     console.log(postId);
     const q =
-      "UPDATE event_posts SET `title`=?,`post_text`=?,`category`=?, `event_date`=? ,`location` = ? , `goalNbrParticipants` = ?   WHERE `postID` = ? ";
+      "UPDATE event_posts SET `title`=?,`post_text`=?,`category`=?, `event_date`=? ,`location` = ? , `goalNbrParticipants` = ?, `media`=?  WHERE `postID` = ? ";
 
     const values = [
       req.body.title,
@@ -98,6 +98,7 @@ export const updatePost = (req, res) => {
       req.body.eventdate,
       req.body.location,
       req.body.numParticipants,
+      req.body.img,
       postId
     ];
 

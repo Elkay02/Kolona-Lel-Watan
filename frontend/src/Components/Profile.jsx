@@ -25,7 +25,7 @@ const Profile = (props) => {
         >
         
           <Row className="profile__photo ml-1">
-            <img className="img-fluid" 
+            <img className="img-fluid profile-img" 
             src={`../upload/${props.data?.profile_picture}`}
             />
           </Row>

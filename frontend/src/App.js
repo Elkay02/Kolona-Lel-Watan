@@ -10,6 +10,7 @@ import AboutUs from './Pages/AboutUs';
 import FAQ from './Pages/FAQ';
 import CreateEvent from './Pages/CreateEvent';
 import UserProfileSettings from './Pages/UserProfileConfig';
+import OrgProfileSettings from './Pages/OrgProfileConfig';
 import UserProfile from './Pages/UserProfile';
 import Single from './Pages/Single';
 import ContactUs from './Pages/ContactUs';
@@ -58,6 +59,10 @@ const browserRouter = createBrowserRouter([
   {
     path:'/contactus',
     element:<ContactUs />
+  },
+  {
+    path:'/org_profile_settings/:id',
+    element:<OrgProfileSettings />
   },
   {
     path:'/org_profile/:id',

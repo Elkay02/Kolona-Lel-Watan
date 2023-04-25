@@ -26,7 +26,7 @@ const Profile = (props) => {
         >
         
           <Row className="profile__photo ml-1">
-            <img className="img-fluid" 
+            <img className="img-fluid profile-img" 
             src={`../upload/${props.data?.profile_picture}`}
             />
           </Row>
@@ -51,7 +51,7 @@ const Profile = (props) => {
               <div className="d-flex justify-content-start w-100 mt-1">
                 {
                   currentUser.OrganizationID === props.data.OrganizationID ?
-                  <Link to={"/org_profile_settings/" + currentUser.OrganizationID}>
+                  <Link to={"/org_profile_settings/" + currentUser.OrganizationID} state={props.data}>
                     <button className=" btn style-primary-btn ">
                         Edit Profile 
                     </button>

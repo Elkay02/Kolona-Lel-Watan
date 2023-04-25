@@ -12,22 +12,19 @@ import { AuthContext } from '../context/authContext';
 import { useContext } from 'react';
 import moment from "moment";
 
-const UserProfileSettings = () => {
+const OrgProfileSettings = () => {
 
     
     const location = useLocation();
-    const userID = location.pathname.split("/")[2];
+    const orgID = location.pathname.split("/")[2];
     const { currentUser } = useContext(AuthContext);
     const state = useLocation().state;
     
 
-    const [first_name, setFirstname] = useState(state?.first_name||"");
-    const [last_name, setLastname] = useState(state?.last_name||"");
-    const [age, setAge] = useState(state?.age||0);
-    const [gender, setGender] = useState(state?.gender||"");
-    const [profession, setProfession] = useState(state?.profession||"");
+    const [name, setName] = useState(state?.name||"");
+    const [type, setType] = useState(state?.type||"");
     const [email_address, setEmail] = useState(state?.email_address||"");
-    const [description, setDescription] = useState(state?.description||"");
+    const [mission, setMission] = useState(state?.mission||"");
    const [location2, setLocation] = useState(state?.location || "");
    const [file, setFile] = useState(null);
     
@@ -49,30 +46,16 @@ const UserProfileSettings = () => {
         e.preventDefault();
         const imgUrl = await upload();
         try {
-            console.log([
-                first_name ,
-                last_name,
-                age,
-                gender,
-                profession,
-                email_address,
-                description,
-                location2,
-                 file ? imgUrl : "",
-              currentUser.userID ,
-            ])
+            
 
-            axios.put('/accounts/update_user/'+userID, {
-                first_name ,
-                last_name,
-                age,
-                gender,
-                profession,
+            axios.put('/accounts/update_organization/'+orgID, {
+                name,
+                type,
                 email_address,
-                description,
+                mission,
                 location2,
                 img: file ? imgUrl : "",
-                userid : currentUser.userID ,
+                orgId : currentUser.OrganizationID ,
               });
                     navigate("/") ;
         } catch (err) {
@@ -143,28 +126,14 @@ const UserProfileSettings = () => {
                     </div>
                     <div className="row mt-2">
                         <div className="col-md-6">
-                            <label className="labels">First Name</label>
-                            <input type="text" className="form-control" placeholder="first name" value={first_name} onChange={(e) => setFirstname(e.target.value)}/>
+                            <label className="labels">Name</label>
+                            <input type="text" className="form-control" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)}/>
                             </div>
                         <div className="col-md-6">
-                            <label className="labels">Last Name</label>
-                            <input type="text" className="form-control"  value={last_name} 
-                            onChange={(e) => setLastname(e.target.value)}
+                            <label className="labels">Type</label>
+                            <input type="text" className="form-control"  value={type} 
+                            onChange={(e) => setType(e.target.value)}
                             placeholder="last name"/>
-                            </div>
-                    </div>
-                    <div className="row mt-2">
-                        <div className="col-md-6">
-                            <label className="labels">Gender</label>
-                            <input type="text" className="form-control" placeholder="Gender" 
-                            onChange={(e) => setGender(e.target.value)}
-                            value={gender}/>
-                            </div>
-                        <div className="col-md-6">
-                            <label className="labels">Age</label>
-                            <input type="number" className="form-control" 
-                            onChange={(e) => setAge(e.target.value)}
-                            value={age} placeholder="Age" />
                             </div>
                     </div>
                     <div className="row mt-3">
@@ -186,16 +155,11 @@ const UserProfileSettings = () => {
                             <input type="text" className="form-control" placeholder="Email" value={email_address}
                             onChange={(e) => setEmail(e.target.value)}/>
                             </div>
-                        <div className="col-md-12">
-                            <label className="labels">Profession</label>
-                            <input type="text" className="form-control"  value={profession}
-                            onChange={(e) => setProfession(e.target.value)}/>
-                            </div>
 
                             <div className="col-md-12">
-                            <label className="labels">Description</label>
-                            <textarea type="text" className="form-control"  value={description}
-                            onChange={(e) => setDescription(e.target.value)}/>
+                            <label className="labels">Mission</label>
+                            <textarea type="text" className="form-control"  value={mission}
+                            onChange={(e) => setMission(e.target.value)}/>
                             </div>
                     </div>
                     {/* <div className="row mt-3">
@@ -223,4 +187,4 @@ const UserProfileSettings = () => {
 };
 
 
-export default UserProfileSettings;
+export default OrgProfileSettings;
