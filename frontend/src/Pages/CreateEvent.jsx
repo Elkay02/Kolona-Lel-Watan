@@ -85,7 +85,7 @@ const CreateEvent = () => {
             title,
             desc,
             cat,
-            img: file ? imgUrl : "",
+            img: file ? imgUrl : state.media,
             eventdate: date,
             location,
             numParticipants,

@@ -24,13 +24,23 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const emailRegex = /\S+@\S+\.\S+/;
+    if (!emailRegex.test(inputs.email_address)) {
+      setError("Please enter a valid email address");
+    }
+
+    // check if password is at least 6 characters
+    else if (inputs.password.length < 6) {
+      setError("Password must be at least 6 characters");
+    } 
+    else{ 
     try {
       const res = await axios.post("/auth/register", inputs);
-      console.log(res)
       navigate("/login");
     } catch (err) {
-      setError(err.response.data);
+      setError("Already registered");
     }
+  }
   };
 
   //console.log(inputs)
@@ -102,7 +112,7 @@ function Register() {
                   <button type="submit" className="btn style-primary-btn" onClick={handleSubmit}>
                     Sign up
                   </button>
-                  {err && <p>{err}</p>}
+                  {err && <p className="text-danger">{err}</p>}
                 </div>
                 <p className="text-center mt-3">
                   Already have an account? <Link to="/login">Log in</Link>

@@ -30,7 +30,7 @@ function Login() {
       await login(inputs)
       navigate("/");
     } catch (err) {
-      setError(err.response.data);
+      setError("Please enter a valid email address / Password");
     }
   };
 
@@ -39,7 +39,7 @@ function Login() {
         <div className="col-12 col-md-6 col-lg-4">
           <div className="form-container border-0 shadow">
             <div className="card-body">
-              <h2 className="text-center fw-bold fst-italic m-0 p-0">Welcome!</h2>
+              <h2 className="text-center fw-bold fst-italic m-0 p-0">Welcome Back!</h2>
               <img
                 className="logo d-block mx-auto mb-4"
                 src={logo}
@@ -76,7 +76,7 @@ function Login() {
                   <button type="submit" className="btn  style-primary-btn" onClick={handleSubmit}>
                     Sign in
                   </button>
-                  {err && <p>{err}</p>}
+                  {err && <p className="text-danger">{err}</p>}
                 </div>
                 <p className="text-center mt-3">
                   Don't have an account? <Link to="/register">Sign up</Link>

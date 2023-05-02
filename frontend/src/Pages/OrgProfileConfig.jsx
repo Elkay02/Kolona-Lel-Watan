@@ -54,7 +54,7 @@ const OrgProfileSettings = () => {
                 email_address,
                 mission,
                 location2,
-                img: file ? imgUrl : "",
+                img: file ? imgUrl : state.profile_picture,
                 orgId : currentUser.OrganizationID ,
               });
                     navigate("/") ;

@@ -7,6 +7,7 @@ import Description from "../Components/Description"
 import BootstrapNavbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import axios from "axios";
+import UserEvents from "../Components/UserEvents";
 // import Skills from "../Skills/Skills";
 // import Courses from "../Skills/Courses";
 // import Interests from "../Skills/Interests";
@@ -39,6 +40,7 @@ const UserProfile = (props) => {
         
             <Profile data={userInfo}/>
             <Description desc={userInfo.description}></Description>
+            <UserEvents id={userId} title="Booked Events" width={1}/>
         </Col>
         <Footer />
     </>

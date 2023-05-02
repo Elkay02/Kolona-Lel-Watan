@@ -22,13 +22,27 @@ function Register_org() {
   };
 
   const handleSubmit = async (e) => {
+    // check if email is in correct format
     e.preventDefault();
-    try {
-      const res = await axios.post("/auth2/register", inputs);
-      console.log(res);
-      navigate("/login");
-    } catch (err) {
-      setError(err.response.data);
+    const emailRegex = /\S+@\S+\.\S+/;
+    if (!emailRegex.test(inputs.email_address)) {
+      setError("Please enter a valid email address");
+    }
+
+    // check if password is at least 6 characters
+    else if (inputs.password.length < 6) {
+      setError("Password must be at least 6 characters");
+    } 
+    else{  
+      try {
+        const res = await axios.post("/auth2/register", inputs);
+        navigate("/login");
+      } catch (err) {
+        setError("Already registered");
+        setTimeout(() => {
+          navigate("/login_org");
+        }, 3000);
+      }
     }
   };
 
@@ -111,7 +125,7 @@ function Register_org() {
                   <button type="submit" className="btn style-primary-btn" onClick={handleSubmit}>
                     Sign up
                   </button>
-                  {err && <p>{err}</p>}
+                  {err && <p className="text-danger">{err}</p>}
                 </div>
                 <p className="text-center mt-3">
                   Already have an account? <Link to="/login">Log in</Link>

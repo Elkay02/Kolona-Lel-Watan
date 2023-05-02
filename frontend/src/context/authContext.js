@@ -17,6 +17,8 @@ export const AuthContextProvider = ({children})=>{
   const logout = async(inputs)=>{
     const res = await axios.post("/auth/logout");
     setCurrentUser(null);
+    // reload the page
+    window.location.reload();
   };
 
   useEffect(()=>{

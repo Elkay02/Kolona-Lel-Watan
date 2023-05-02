@@ -71,7 +71,7 @@ const UserProfileSettings = () => {
                 email_address,
                 description,
                 location2,
-                img: file ? imgUrl : "",
+                img: file ? imgUrl : state.profile_picture,
                 userid : currentUser.userID ,
               });
                     navigate("/") ;

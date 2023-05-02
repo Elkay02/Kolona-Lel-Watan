@@ -53,7 +53,7 @@ const Home = () => {
     <>
       <BootstrapNavbar />
       <Slideshow element={<Searchbar data={posts} setFilters={setFilters}></Searchbar>} />
-      <Events title="Upcoming Events" width={2} data={posts} filters={filters} />
+      <Events title="Upcoming Events" width={1} data={posts} filters={filters} />
       <Footer />
     </>
   );

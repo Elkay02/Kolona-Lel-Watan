@@ -7,7 +7,6 @@ export const getBookings = (req,res)=>{
     const q = "SELECT * FROM participates WHERE postID = ?";
     db.query(q, [req.query.postId], (err, data) => {
       if (err) return res.status(500).json(err);
-      console.log(data.map(booking=>booking.userID))
       return res.status(200).json(data.map(booking=>booking.userID));
     });
 }
@@ -50,8 +49,6 @@ export const unbookEvent = (req, res) => {
     db.query(q1,[req.query.postId],(err,data)=>{
       
       const q = "DELETE FROM participates WHERE `userID` = ? AND `postID` = ?";
-          console.log("user Id  "+ req.query.userId);
-          console.log("post Id "+ req.query.postId);
           db.query(q, [req.query.userId, req.query.postId], (err, data) => {
             if (err) return res.status(500).json(err);
             return res.status(200).json("User unbooked event.");

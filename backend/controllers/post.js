@@ -30,6 +30,17 @@ export const getOrgPost = (req, res) => {
   });
 };
 
+export const getUserPost = (req, res) => {
+  const q ="SELECT * , DATE_FORMAT(e.event_date, '%Y-%m-%d') AS  event_date FROM event_posts e, user_profile u , participates p WHERE p.userID = u.userID AND p.postID = e.postID AND u.userID = ?";
+  console.log("here")
+  db.query(q, [req.params.id], (err, data) => {
+    if (err) return res.status(500).json(err);
+    console.log(q);
+    console.log(data);
+    return res.status(200).json(data);
+  });
+};
+
 export const addPost = (req, res) => {
   const token = req.cookies.access_token;
   if (!token) return res.status(401).json("Not authenticated!");
